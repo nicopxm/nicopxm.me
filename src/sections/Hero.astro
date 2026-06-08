@@ -1,0 +1,108 @@
+---
+import { Icon } from "astro-icon";
+---
+
+<div
+  id="home"
+  class="flex flex-col items-center justify-center w-full gap-4 overflow-hidden my-10 md:gap-6 md:flex-row"
+>
+  <div class="duration-1000 delay-150 animate-in fade-in fill-mode-both">
+    <div class="avatar">
+      <div
+        class="w-32 sm:w-36 md:w-40 rounded-full brightness-[1.1] saturate-[1.1] avatar-border"
+      >
+        <img
+          src="/assets/lupita-selfie.png"
+          alt="Nico Avila - Selfie with Lupita"
+          width="160"
+          height="160"
+          loading="eager"
+          fetchpriority="high"
+          decoding="sync"
+          style={{
+            objectPosition: "60% 0%",
+            objectFit: "cover",
+            scale: "1.15",
+          }}
+        />
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="text-lg flex flex-col gap-[4px] md:gap-[2px] text-shadow self-start sm:self-auto md:ml-10 md:w-auto mx-auto md:mx-0 px-[2rem]"
+  >
+    <p class="slide-text animDuration-[1000] m-0 text-primary-light text-2xl">
+      Hola!👋
+    </p>
+    <h1
+      class="slide-text animDuration-[1000] m-0 animDelay-[500] text-primary-light text-3xl"
+    >
+      My name is Juan Avila
+    </h1>
+    <p
+      class="slide-text animDuration-[1000] m-0 animDelay-[1450] text-primary-body text-xl"
+    >
+      But you can call me Nico
+    </p>
+    <div
+      class="flex flex-col [&>*]:text-primary-body text-shadow md:gap-[2ch] [&>*]:m-0 sm:flex-row"
+    >
+      <h3 class="slide-text animDuration-[1000] animDelay-[2750]">
+        Data Analyst 📊
+      </h3>
+      <h3 class="slide-text animDuration-[1000] animDelay-[3250]">
+        Scrum Practitioner 🏃‍♂️
+      </h3>
+      <h3 class="slide-text animDuration-[1000] animDelay-[3750]">Project Specialist 🧩</h3>
+    </div>
+    <div class="flex gap-2 my-3 items-center flex-wrap">
+      <a
+        class="slide-icon animDelay-[4200] animDuration-[500]"
+        href="https://github.com/nicopxm"
+        target="_blank"
+        aria-label="Follow Nico on GitHub"
+        rel="noopener noreferrer"
+      >
+        <Icon color="#e8f4f8" size={"32px"} pack="mdi" name="github" />
+      </a>
+      <a
+        class="slide-icon animDelay-[4350] animDuration-[500]"
+        href="https://www.linkedin.com/in/javila95/"
+        target="_blank"
+        aria-label="Connect with Nico on LinkedIn"
+        rel="noopener noreferrer"
+      >
+        <Icon color="#e8f4f8" size={"32px"} pack="mdi" name="linkedin" />
+      </a>
+      <a
+        class="slide-icon animDelay-[4650] animDuration-[500] [&>span]:shadow-md text-primary-light"
+        href="mailto:nicopxm@outlook.com"
+        aria-label="Email Nico"
+      >
+        <Icon color="#e8f4f8" size={"32px"} pack="mdi" name="email" />
+      </a>
+      <a
+        class="slide-icon animDelay-[4950] animDuration-[500] text-sm text-primary-light p-1 px-[16px] bg-[#21227642] backdrop-blur-sm border-transparent ease-in-out duration-200 rounded-badge border-2 resume-btn"
+        href="/assets/Nico-Avila-Resume.pdf"
+        target="_blank"
+        aria-label="Download Nico's Resume"
+      >
+        Resume
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .resume-btn {
+    transition: color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .resume-btn:hover {
+    color: #e5e7eb;
+    text-shadow: 0 0 8px #9ca3af, 0 0 20px rgba(156, 163, 175, 0.8), 0 0 40px rgba(156, 163, 175, 0.4);
+    border-color: #6b7280;
+    box-shadow: 0 0 8px #6b7280, 0 0 20px rgba(107, 114, 128, 0.4);
+    transform: scale(1.05);
+  }
+</style>

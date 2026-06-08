@@ -1,0 +1,332 @@
+@import url("https://fonts.googleapis.com/css2?family=Oxygen+Mono&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth bg-[#090909];
+  }
+
+  body {
+    @apply m-0 p-0 h-screen w-screen overflow-auto overflow-x-hidden;
+    @apply text-left bg-transparent break-words leading-relaxed text-[#444];
+    font-family: Verdana, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong,
+  b {
+    @apply text-[#222];
+  }
+
+  a {
+    @apply text-[#3273dc];
+  }
+
+  nav a {
+    @apply mr-2.5;
+  }
+
+  textarea {
+    @apply w-full text-base;
+  }
+
+  input {
+    @apply text-base;
+  }
+
+  content {
+    @apply leading-normal;
+  }
+
+  table {
+    @apply w-full;
+  }
+
+  img {
+    @apply max-w-full h-auto;
+  }
+
+  code {
+    @apply px-1.5 py-0.5 bg-gray-100;
+  }
+
+  pre {
+    @apply p-4;
+  }
+
+  pre > code {
+    all: unset;
+  }
+
+  blockquote {
+    @apply border border-gray-400 text-[#222] py-0.5 px-0 pl-5 m-0 italic;
+  }
+}
+
+@layer components {
+  /* Blog post specific styles */
+  #blog-post a {
+    @apply underline underline-offset-4 text-accent-cyan hover:text-accent-yellow transition-colors duration-200;
+  }
+
+  #blog-post h1,
+  #blog-post h2 {
+    @apply text-blog-heading mb-1 text-3xl;
+  }
+
+  .prose-section-title {
+    @apply text-white text-shadow text-2xl;
+  }
+
+  #blog-post h1 {
+    @apply mb-6;
+  }
+
+  #blog-post h2:nth-child(n + 1) {
+    @apply mt-10;
+  }
+
+  #blog-post h3,
+  #blog-post h4 {
+    @apply text-[#e0b4f4] my-2 text-xl;
+  }
+
+  #blog-post h3 {
+    @apply mt-4 mb-1;
+  }
+
+  #blog-post p,
+  li {
+    @apply my-2 text-primary-body text-shadow text-sm md:text-base;
+  }
+
+  #blog-post strong,
+  #blog-post b {
+    @apply text-primary-light;
+  }
+
+  #blog-post code {
+    @apply bg-dark rounded px-2 py-0.5 text-accent-cyan;
+  }
+
+  #blog-post pre {
+    @apply bg-dark rounded-lg p-4 shadow-dark;
+  }
+
+  #blog-post pre code {
+    @apply bg-transparent p-0 text-primary-body;
+  }
+
+  #blog-post blockquote {
+    @apply border-l-4 border-accent-cyan pl-4 italic text-primary-body;
+  }
+
+  #blog-post hr {
+    @apply my-6;
+  }
+
+  #blog-post ol,
+  ul {
+    @apply !my-2;
+  }
+
+  .prose-section-header {
+    @apply w-full flex justify-center mx-auto text-3xl font-bold text-primary-light text-shadow-DEFAULT mt-8 mb-4;
+  }
+
+  /* Gradient backgrounds */
+  .screen-gradient {
+    @apply animate-[gradient-animation_10s_ease_infinite];
+    background: linear-gradient(135deg, #43afe1, #a258c4, #f3812a 70%, #e7ff91);
+    background-size: 120% 120%;
+  }
+
+  .screen-gradient-2 {
+    @apply animate-[gradient-animation_10s_ease_infinite];
+    background: linear-gradient(43deg, #1faaeb, #bf4cf5, #e39997 70%, #f9f20e);
+  }
+
+  .screen-gradient-3 {
+    background: linear-gradient(
+      176deg,
+      rgb(18, 24, 27) 50%,
+      rgb(32, 39, 55) 100%
+    );
+  }
+
+  /* Panel component */
+  .panel {
+    @apply rounded-xl backdrop-blur-2xl border border-[#4b5563];
+    background: #111111b0;
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Drawer components */
+  .drawer-toggle:checked ~ .drawer-side > .drawer-overlay {
+    @apply opacity-0;
+  }
+
+  .drawer.drawer-end > .drawer-toggle:checked ~ .drawer-content {
+    @apply translate-x-0;
+  }
+
+  .drawer.drawer-end > .drawer-toggle:checked ~ .drawer-side > ul {
+    @apply mr-2;
+  }
+
+  /* Navigation */
+  .nav-link {
+    @apply text-primary-light text-shadow-DEFAULT;
+  }
+
+  .link-menu > li > a {
+    @apply nav-link;
+  }
+
+  /* Card list */
+  .card-list {
+    @apply flex flex-grow justify-start flex-nowrap gap-5 overflow-x-auto pt-4 w-full p-4 items-stretch;
+    grid-template-columns: repeat(auto-fit, minmax(218px, 227px));
+  }
+
+  /* Borders */
+  .gradient-border-3 {
+    @apply border-3 border-transparent;
+  }
+
+  .avatar-border {
+    @apply rounded-full border-4 border-transparent;
+    background: linear-gradient(white, white) padding-box,
+      linear-gradient(135deg, #ebf9ab, #51c9ff, #e4bef5) border-box;
+  }
+
+  /* Button styles */
+  .gradient-button {
+    @apply rounded-[40px] border-4 border-transparent shadow-purple-glow animate-[rotate_5s_linear_infinite];
+    --angle: 0deg;
+    background: linear-gradient(#262626, #262626) padding-box,
+      conic-gradient(from var(--angle), #51c9ff, #ebf9ab, #e587ff, #51c9ff)
+        border-box;
+  }
+
+  /* Scrollbar styles */
+  ::-webkit-scrollbar {
+    @apply h-2 w-2 bg-transparent;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-[#54554d] rounded-[20px];
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-[#cbbef4] rounded-[20px] cursor-grab;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-[#cbbef4] cursor-grab;
+  }
+
+  ::-webkit-scrollbar-thumb:active {
+    @apply bg-[#cbbef4] cursor-grabbing;
+  }
+
+  /* Additional styles */
+  .skill-glow {
+    @apply text-shadow-skill;
+  }
+
+  .svg-shadow {
+    -webkit-filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7));
+  }
+
+  /* Dialog */
+  dialog {
+    @apply pointer-events-none opacity-0 transition-opacity duration-500;
+  }
+
+  dialog[open] {
+    @apply opacity-100 pointer-events-auto;
+  }
+
+  dialog::backdrop {
+    @apply pointer-events-none;
+    background-color: rgba(0, 0, 0, 0.43);
+  }
+}
+
+@layer utilities {
+  /* Scrollbar utilities */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-default {
+    -ms-overflow-style: initial;
+    scrollbar-width: initial;
+  }
+
+  .scrollbar-default::-webkit-scrollbar {
+    display: initial;
+  }
+
+  /* Animations */
+  .slide-text {
+    @apply animate-in fade-in fill-mode-both slide-in-from-right-[200px];
+  }
+
+  .slide-icon {
+    @apply animate-in fade-in fill-mode-both slide-in-from-bottom-[200px];
+  }
+
+  .slide-icon > svg {
+    filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.3));
+  }
+
+  /* Custom gradients not easily expressible in config */
+  .gradient-button-colors {
+    background: conic-gradient(
+      from var(--angle, 0deg),
+      #51c9ff,
+      #ebf9ab,
+      #e587ff,
+      #51c9ff
+    );
+  }
+}
+
+/* Keyframe animations */
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes rotate {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
