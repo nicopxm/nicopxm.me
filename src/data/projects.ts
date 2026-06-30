@@ -2,12 +2,12 @@ import type { Project } from "../types";
 
 const projects: Project[] = [
   {
-    name: "Automated Cryptocurrency Tracker",
-    filename: "coming-soon.png", // 
+    name: "Momentum — Crypto Signal Tracker (Coinbase)",
+    filename: "pump-preview.png",
     role: "Backend & Systems Developer",
-    dates: "In Progress (Active Sprint)",
-    link: "https://github.com/nicopxm", 
-    tags: ["Python","PostgreSQL", "Supabase", "Coinbase API", "Telegram API", "Automation"],
+    dates: "Live · May 2026 — Present",
+    link: "https://momentum-tracker-mirjjfgreydqj26dgyswz7.streamlit.app/",
+    tags: ["Python", "PostgreSQL", "Supabase", "Railway", "Streamlit", "Coinbase API", "Telegram API"],
     postID: "crypto-tracker",
   },
   {
