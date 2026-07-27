@@ -1,18 +1,17 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import { SITE_DESCRIPTION } from "../config";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../config";
 import MainLayout from "../layouts/MainLayout.astro";
 import { ViewTransitions } from "astro:transitions";
-const { frontmatter } = Astro.props;
-const { title, author } = frontmatter;
+const { title, description, image } = Astro.props.frontmatter;
 ---
 
 <html lang="en" data-theme="cmyk">
   <head>
     <BaseHead
-      title={"Nico Avila – Data Analyst & Scrum Master"}
-      description={SITE_DESCRIPTION}
-      image="assets/coffee.jpeg"
+      title={title ? `${title} — Nico Avila` : SITE_TITLE}
+      description={description ?? SITE_DESCRIPTION}
+      image={image ?? "assets/coffee.jpeg"}
     />
     <ViewTransitions />
   </head>

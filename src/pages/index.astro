@@ -1,6 +1,6 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import { SITE_DESCRIPTION } from "../config";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../config";
 import MainLayout from "../layouts/MainLayout.astro";
 import Art from "../sections/Art.astro";
 import Contact from "../sections/Contact.astro";
@@ -17,7 +17,7 @@ import { ViewTransitions } from "astro:transitions";
 <html lang="en" data-theme="cmyk">
   <head>
     <BaseHead
-      title={"Nico Avila – Data Analyst & Scrum Master"}
+      title={SITE_TITLE}
       description={SITE_DESCRIPTION}
       image="assets/coffee.jpeg"
     />

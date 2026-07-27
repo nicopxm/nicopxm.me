@@ -30,35 +30,32 @@ import { Icon } from "astro-icon";
   </div>
 
   <div
-    class="text-lg flex flex-col gap-[4px] md:gap-[2px] text-shadow self-start sm:self-auto md:ml-10 md:w-auto mx-auto md:mx-0 px-[2rem]"
+    class="text-lg flex flex-col gap-[4px] md:gap-[2px] text-shadow self-start sm:self-auto md:ml-10 md:w-auto md:max-w-[53rem] mx-auto md:mx-0 px-[2rem]"
   >
-    <p class="slide-text animDuration-[1000] m-0 text-primary-light text-2xl">
-      Hola!👋
+    <p
+      class="slide-text animDuration-[1000] m-0 mb-2 self-start text-sm text-primary-body p-1 px-[16px] bg-[#21227642] backdrop-blur-sm border-2 border-transparent rounded-badge"
+    >
+      Open to GTM engineer and solutions consultant roles
     </p>
     <h1
-      class="slide-text animDuration-[1000] m-0 animDelay-[500] text-primary-light text-3xl"
+      class="slide-text animDuration-[1000] animDelay-[150] m-0 text-primary-light text-3xl"
     >
-      My name is Juan Avila
+      I build the systems that find, score, and route revenue.
     </h1>
     <p
-      class="slide-text animDuration-[1000] m-0 animDelay-[1450] text-primary-body text-xl"
+      class="slide-text animDuration-[1000] animDelay-[300] m-0 text-primary-light text-base"
     >
-      But you can call me Nico
+      Juan "Nico" Avila — Mexico City
     </p>
-    <div
-      class="flex flex-col [&>*]:text-primary-body text-shadow md:gap-[2ch] [&>*]:m-0 sm:flex-row"
+    <p
+      class="slide-text animDuration-[1000] animDelay-[450] m-0 mt-2 text-primary-body text-base"
     >
-      <h3 class="slide-text animDuration-[1000] animDelay-[2750]">
-        Data Analyst 📊
-      </h3>
-      <h3 class="slide-text animDuration-[1000] animDelay-[3250]">
-        Scrum Practitioner 🏃‍♂️
-      </h3>
-      <h3 class="slide-text animDuration-[1000] animDelay-[3750]">Project Specialist 🧩</h3>
-    </div>
+      GTM engineer. I'm drawn to the problems where the process is fragmented and the system doesn't exist yet — outbound, lead enrichment, ICP scoring, CRM automation. 
+      US direct sales on one side, data and automation on the other.
+    </p>
     <div class="flex gap-2 my-3 items-center flex-wrap">
       <a
-        class="slide-icon animDelay-[4200] animDuration-[500]"
+        class="slide-icon animDelay-[600] animDuration-[500]"
         href="https://github.com/nicopxm"
         target="_blank"
         aria-label="Follow Nico on GitHub"
@@ -67,7 +64,7 @@ import { Icon } from "astro-icon";
         <Icon color="#e8f4f8" size={"32px"} pack="mdi" name="github" />
       </a>
       <a
-        class="slide-icon animDelay-[4350] animDuration-[500]"
+        class="slide-icon animDelay-[750] animDuration-[500]"
         href="https://www.linkedin.com/in/javila95/"
         target="_blank"
         aria-label="Connect with Nico on LinkedIn"
@@ -76,19 +73,27 @@ import { Icon } from "astro-icon";
         <Icon color="#e8f4f8" size={"32px"} pack="mdi" name="linkedin" />
       </a>
       <a
-        class="slide-icon animDelay-[4650] animDuration-[500] [&>span]:shadow-md text-primary-light"
+        class="slide-icon animDelay-[900] animDuration-[500] [&>span]:shadow-md text-primary-light"
         href="mailto:nicopxm@outlook.com"
         aria-label="Email Nico"
       >
         <Icon color="#e8f4f8" size={"32px"} pack="mdi" name="email" />
       </a>
       <a
-        class="slide-icon animDelay-[4950] animDuration-[500] text-sm text-primary-light p-1 px-[16px] bg-[#21227642] backdrop-blur-sm border-transparent ease-in-out duration-200 rounded-badge border-2 resume-btn"
+        class="slide-icon animDelay-[1050] animDuration-[500] text-sm text-primary-light p-1 px-[16px] bg-[#21227642] backdrop-blur-sm border-transparent ease-in-out duration-200 rounded-badge border-2 resume-btn"
         href="/assets/Nico-Avila-Resume.pdf"
         target="_blank"
         aria-label="Download Nico's Resume"
       >
-        Resume
+        Résumé
+      </a>
+      {/* TODO: calendly URL pending */}
+      <a
+        class="slide-icon animDelay-[1200] animDuration-[500] text-sm text-primary-light p-1 px-[16px] bg-[#21227642] backdrop-blur-sm border-transparent ease-in-out duration-200 rounded-badge border-2 resume-btn"
+        href="#"
+        aria-label="Book 20 minutes with Nico"
+      >
+        Book 20 minutes
       </a>
     </div>
   </div>

@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/BlogPost.astro
-
-
+title: "Momentum — Crypto Signal Tracker"
+description: "Scores 231 Coinbase pairs every seven minutes and routes ranked alerts automatically — a production signal-scoring and notification pipeline running 24/7 on Railway."
 ---
 
 > ⚠️ **Disclaimer:** This project is a personal engineering and data science project built for educational and portfolio purposes only. Nothing on this page, the live dashboard, or the Telegram channel constitutes financial or investment advice. All performance data reflects signal detection outcomes — not actual trading results. Crypto markets are highly volatile. Never invest more than you can afford to lose.

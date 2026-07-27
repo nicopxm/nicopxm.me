@@ -1,5 +1,7 @@
 ---
 layout: ../../layouts/BlogPost.astro
+title: "Credit Risk Scorecard Framework"
+description: "Cut portfolio default rates by 58% across 300,000+ applications with an interpretable scoring model that ranks and routes applicants by risk before approval."
 ---
 
 # Credit Risk Scorecard Framework

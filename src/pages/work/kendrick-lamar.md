@@ -1,5 +1,7 @@
 ---
 layout: ../../layouts/BlogPost.astro
+title: "The Lamar Catalog — Sonic & Partnership Analytics"
+description: "Turned 293 tracks and 205 collaborations into a clustering model and executive Tableau dashboards, recovering the full dataset after Spotify deprecated the API mid-project."
 ---
 
 # The Lamar Catalog: Sonic & Partnership Analytics 

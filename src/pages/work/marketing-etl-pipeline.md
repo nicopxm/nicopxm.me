@@ -1,5 +1,7 @@
 ---
 layout: ../../layouts/BlogPost.astro
+title: "Marketing Analytics ETL Pipeline"
+description: "Replaced manual cross-platform ad reporting with an automated ETL pipeline, turning days-late spend data into same-day campaign decisions across Snapchat, X, and Reddit."
 ---
 
 # Marketing Analytics ETL Pipeline
