@@ -28,10 +28,10 @@ const { projects, key } = Astro.props as { projects: Project[]; key: string };
 </div>
 
 <script>
-  ["productions", "art", "projects"].forEach((key) => {
-    const list = document.getElementById(key + "-list")!;
-    const next = document.getElementById(key + "-next");
-    const back = document.getElementById(key + "-back");
+  document.querySelectorAll<HTMLElement>('[id$="-list"]').forEach((list) => {
+    const key = list.id.replace(/-list$/, "");
+    const next = document.getElementById(`${key}-next`);
+    const back = document.getElementById(`${key}-back`);
 
     const getScrollAmount = () => {
       // Get the actual first card element

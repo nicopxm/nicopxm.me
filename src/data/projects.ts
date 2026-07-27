@@ -12,16 +12,15 @@ const projects: Project[] = [
   },
   {
     name: "Kendrick Lamar Discography Analysis & Dashboard",
-    filename: "kendrick-dashboard-preview.png", // You can add a placeholder image named kendrick.webp to public/ later
+    filename: "kendrick-dashboard-preview.png",
     role: "Data & Insights Analyst",
     dates: "Finalized June 2026",
-    link: "https://github.com/nicopxm", // Replace with your repo link later
     tags: ["Python", "Tableau", "Data Visualization", "Audio Feature Extraction"],
     postID: "kendrick-lamar",
   },
   {
     name: "Credit Risk Scorecard Framework",
-    filename: "dashboard-credit.png", // You can add a placeholder image named credit-risk.webp to public/ later
+    filename: "dashboard-credit.png",
     role: "Machine Learning & Risk Analyst",
     dates: "Completed March 2026",
     link: "https://github.com/nicopxm/Credit-Risk-Scorecard",
@@ -30,13 +29,12 @@ const projects: Project[] = [
   },
   {
     name: "Multi-Platform Marketing Analytics ETL Pipeline",
-    filename: "snapchatAds.png", 
+    filename: "snapchatAds.png",
     role: "Marketing Data Analyst & Pipeline Engineer",
     dates: "Professional Experience Highlight",
-    link: "https://linkedin.com/in/your-profile", 
     tags: ["Python", "ETL Pipelines", "Data Automation", "Looker Studio", "Marketing Metrics", "Ad-Spend Optimization"],
     postID: "marketing-etl-pipeline",
-  }
+  },
 ];
 
 export default projects;
