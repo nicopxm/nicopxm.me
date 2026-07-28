@@ -1,8 +1,19 @@
 ---
 import type { Project } from "../types";
 import Card from "./Card.astro";
+import CaseStudyCard from "./CaseStudyCard.astro";
 
-const { projects, key } = Astro.props as { projects: Project[]; key: string };
+const {
+  projects,
+  key,
+  variant = "project",
+  priority = false,
+} = Astro.props as {
+  projects: Project[];
+  key: string;
+  variant?: "project" | "case-study";
+  priority?: boolean;
+};
 ---
 
 <div
@@ -15,9 +26,13 @@ const { projects, key } = Astro.props as { projects: Project[]; key: string };
   />
   <div id={key + "-list"} class="card-list hide-scrollbar flex items-stretch">
     {
-      projects.map((project, index) => (
-        <Card project={project} priority={index === 0 && key === "projects"} />
-      ))
+      projects.map((project, index) =>
+        variant === "case-study" ? (
+          <CaseStudyCard project={project} priority={priority && index === 0} />
+        ) : (
+          <Card project={project} priority={priority && index === 0} />
+        )
+      )
     }
   </div>
   <img

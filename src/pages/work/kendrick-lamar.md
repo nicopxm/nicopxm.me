@@ -1,64 +1,61 @@
 ---
 layout: ../../layouts/BlogPost.astro
-title: "The Lamar Catalog — Sonic & Partnership Analytics"
-description: "Turned 293 tracks and 205 collaborations into a clustering model and executive Tableau dashboards, recovering the full dataset after Spotify deprecated the API mid-project."
+title: "Kendrick Lamar Discography Analysis"
+description: "A personal project asking whether an artist's catalog clusters into distinct eras, and whether you can find them in the audio features. Spotify API, K-Means, and a Tableau dashboard."
 ---
 
-# The Lamar Catalog: Sonic & Partnership Analytics 
+# Kendrick Lamar Discography Analysis
 
 **2026**
 
-An end-to-end data pipeline, clustering model, and interactive Tableau dashboard analyzing 15 years of Kendrick Lamar's discography.
+## The Question
 
-## The Challenge
-Catalog and partnership decisions in the music industry are historically intuition-driven. Without a structured analytical framework, predicting which track characteristics actually drive streaming performance—or whether strategic collaborations mathematically outperform solo releases—is entirely guesswork. I wanted to replace that guesswork with hard data, using Kendrick Lamar’s complete 15-year discography as the analytical subject.
+A question with no business value that I wanted answered anyway: does an artist's catalog cluster into distinct eras, and can you find them in the audio features?
 
-## The Solution
-I engineered a unified Spotify API extraction pipeline to pull 15 years of raw catalog data. From there, I applied K-Means clustering to map out the distinct sonic fingerprints of the music, and trained a Random Forest model to predict catalog popularity based on those underlying audio features. 
+Fifteen years of Kendrick Lamar's discography is a good test case — long enough to have real periods, coherent enough that the periods should be detectable, and something I already knew well enough by ear to sanity-check whatever the clustering claimed.
+
+## The Approach
+
+Spotify API extraction, feature engineering, K-Means clustering, and a Tableau dashboard.
 
 ![Dashboard Preview](../../assets/kendrick-dashboard-preview.png)
 
-Ultimately, I transformed these complex machine learning outputs into two interactive, executive-ready Tableau dashboards. This bridged the gap between the raw algorithmic data and a seamless, dark-themed visual experience, turning 293 tracks and 205 unique collaborations into highly digestible insights.
+### Key Technical Implementations
 
-### Key Technical Implementations:
-* **API Extraction & Pipeline Resilience:** Ingested the catalog using a hybrid Spotify API system. Mid-project, Spotify abruptly deprecated their public audio features endpoint. Instead of reducing the project scope, I built a historical data recovery strategy, merging live metadata with pre-deprecation audio vectors using a multi-pass fuzzy matching system (Gestalt pattern matching > 0.85).
-* **Feature Engineering:** Having a natural ear for track architecture makes a massive difference when structuring audio data. I engineered composite features like `sonic_darkness` (emotional weight index) and `lyrical_density` (verse output proxy) to translate raw audio metrics into quantifiable, interpretable signals.
-* **K-Means Clustering:** Grouped the catalog into interpretable sonic profiles. While silhouette scores identified `k=5` as mathematically optimal, I tuned the thresholds to group them into 3 distinct, audience-readable labels—prioritizing stakeholder communication without sacrificing mathematical rigor.
+* **API Extraction & Pipeline Resilience:** Ingested the catalog using a hybrid Spotify API system. Mid-project, Spotify abruptly deprecated their public audio features endpoint. Rather than reduce scope, I built a historical data recovery strategy, merging live metadata with pre-deprecation audio vectors using a multi-pass fuzzy matching system (Gestalt pattern matching > 0.85).
+* **Feature Engineering:** Having a natural ear for track architecture makes a difference when structuring audio data. I engineered composite features like `sonic_darkness` (emotional weight index) and `lyrical_density` (verse output proxy) to translate raw audio metrics into quantifiable, interpretable signals.
+* **K-Means Clustering:** Grouped the catalog into interpretable sonic profiles. Silhouette scores identified `k=5` as mathematically optimal, but I tuned the thresholds down to 3 readable labels — the extra two clusters were real and not explainable, which is a bad trade for something meant to be looked at.
 
-<img 
-  src="/src/assets/sonic-catalog-map.png" 
-  alt="Kendrick Lamar Discography Dashboard" 
-  class="m-auto w-full md:w-[720px] rounded-lg shadow-lg my-8" 
-/>
+![Kendrick Lamar Discography Dashboard](../../assets/sonic-catalog-map.png)
 
+* **Predictive Modeling:** Built a Random Forest model to predict track popularity across 19 features. To handle the severe temporal imbalance of music releases, I used `StratifiedKFold(stratify=era)`, correcting an initially failing cross-validation score into a robust model.
 
-* **Predictive Modeling:** Built a Random Forest model to predict track popularity across 19 features. To handle the severe temporal imbalance of music releases, I utilized `StratifiedKFold(stratify=era)`, correcting an initially failing cross-validation score into a robust predictive model.
+## What I Found
 
+### 1. Sonic evolution is measurable and directional
 
-## Key Analytical Insights
-
-### 1. Sonic Evolution is Measurable and Directional
-Across 15 years, Kendrick's catalog energy dropped 11.7 points while danceability rose 9.8 points. Valence (musical positivity) declined monotonically across all three defined career eras. Interestingly, his most commercially successful era is mathematically his most emotionally subdued.
+Across 15 years, catalog energy dropped 11.7 points while danceability rose 9.8. Valence — musical positivity — declined monotonically across all three defined eras. His most commercially successful era is mathematically his most emotionally subdued.
 
 ![Chart showing the decline in valence and energy while danceability increased and across Kendrick Lamar's career](../../assets/10_mood_over_time.png)
 
+### 2. Popularity is structurally determined, not sonically
 
-### 2. Popularity is Structurally Determined
-Audio features alone explain less than 15% of popularity variance. When structural features are added (release year, lead vs. feature role, album placement), the model explains 49% of the variance (RF Test R² 0.487), beating the mean baseline by 39%. Release year is the dominant predictor—the streaming algorithm rewards catalog recency, not sonic profile.
+This was the answer I did not expect. Audio features alone explain less than 15% of popularity variance. Add structural features — release year, lead vs. feature role, album placement — and the model explains 49% (RF Test R² 0.487), beating the mean baseline by 39%.
 
-### 3. Feature & Collaboration Trends
-* **Top Collaborators:** Mapped out the most frequent guest appearances across the entire discography. The data clearly isolates the TDE (Top Dawg Entertainment) nucleus—with Jay Rock, Ab-Soul, and ScHoolboy Q dominating the top spots. This visualizes the specific core network of labelmates and heavy hitters that helped shape his overarching sound.
+Release year is the dominant predictor. The streaming algorithm rewards catalog recency, not sonic profile. Which means the thing I set out to measure turned out to be mostly *not* what drives the outcome — a useful result, and not the one I was hoping for.
 
-<img 
-  src="/src/assets/13_top_collaborators.png" 
-  alt="Top Collaborators" 
-  class="m-auto w-full md:w-[720px] rounded-lg shadow-lg my-8" 
-/>
+### 3. The collaboration network is a closed nucleus
 
-## The Impact
-This project demonstrates the ability to manage a full data lifecycle under shifting technical constraints. By standardizing chaotic audio metadata and publishing a 25-sheet optimized data source directly into Tableau Public, I transformed raw API JSON into an interactive, zero-jargon intelligence tool that any A&R executive or catalog manager could immediately use to drive partnership strategy. 
+Mapping guest appearances across the discography isolates the TDE core — Jay Rock, Ab-Soul, and ScHoolboy Q dominate. The sound has a small, consistent set of contributors behind it.
+
+![Top Collaborators](../../assets/13_top_collaborators.png)
+
+## Why It's Here
+
+It answered the question, and the answer was more interesting than the one I went looking for. The transferable part is the middle: standardizing messy metadata, recovering a dataset after an API disappeared underneath it, and choosing a cluster count for legibility rather than for the silhouette score.
 
 ## Links & Resources
+
 * [![Tableau](https://img.shields.io/badge/Tableau-View_Interactive_Dashboard-E97627?style=for-the-badge&logo=Tableau&logoColor=white)](https://public.tableau.com/views/kendrick-WIP/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
 * [![GitHub](https://img.shields.io/badge/GitHub-View_Source_Code-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/nicopxm/kendrick-discography-analysis)

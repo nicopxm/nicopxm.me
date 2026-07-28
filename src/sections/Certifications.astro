@@ -1,0 +1,156 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import certifications from "../data/certifications";
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/*.{jpeg,jpg,png,gif,webp}"
+);
+
+// Duplicated so the track can loop seamlessly; the second pass is hidden
+// from assistive tech so the list is only announced once.
+const track = [
+  ...certifications.map((certification) => ({ certification, clone: false })),
+  ...certifications.map((certification) => ({ certification, clone: true })),
+];
+---
+
+{
+  certifications.length > 0 && (
+    <div class="my-[16px]">
+      <div id="certifications" class="prose-section-header">
+        <h2 class="prose-section-title text-white">Certifications</h2>
+      </div>
+
+      <div class="marquee mx-auto mt-6 mb-12 max-w-[60rem]">
+        <div class="marquee-track">
+          {track.map(({ certification, clone }) => {
+            const loader = certification.filename
+              ? images[`/src/assets/${certification.filename}`]
+              : undefined;
+            const Tag = certification.credentialUrl ? "a" : "div";
+            return (
+              <Tag
+                {...(certification.credentialUrl
+                  ? {
+                      href: certification.credentialUrl,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    }
+                  : {})}
+                aria-hidden={clone ? "true" : undefined}
+                tabindex={clone ? -1 : undefined}
+                class="marquee-item flex flex-col rounded-[12px] card bg-base-100 shadow-md overflow-hidden"
+              >
+                <figure class="bg-slate-800">
+                  {loader ? (
+                    <Image
+                      src={loader()}
+                      alt={`${certification.name} — ${certification.issuer}`}
+                      loading="lazy"
+                      width={300}
+                      height={232}
+                      style={{
+                        aspectRatio: "4/3",
+                        objectFit: "contain",
+                        width: "100%",
+                      }}
+                    />
+                  ) : (
+                    <div
+                      class="w-full flex items-center justify-center bg-slate-800 px-4 text-center"
+                      style={{ aspectRatio: "4/3" }}
+                    >
+                      <span class="text-card-title font-bold">
+                        {certification.name}
+                      </span>
+                    </div>
+                  )}
+                </figure>
+                <div class="p-4 pb-3 flex flex-col gap-1 bg-slate-800">
+                  <span class="text-card-title font-bold">
+                    {certification.name}
+                  </span>
+                  <span class="text-accent-cyan text-sm">
+                    {certification.issuer}
+                  </span>
+                  {certification.date && (
+                    <span class="text-gray-400 text-sm">
+                      {certification.date}
+                    </span>
+                  )}
+                </div>
+              </Tag>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+<style>
+  .marquee {
+    overflow: hidden;
+    /* Fade the leading and trailing edges so cards enter and leave softly */
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 1.25rem;
+    width: max-content;
+    padding: 1rem 0;
+    animation: marquee-scroll 38s linear infinite;
+  }
+
+  .marquee:hover .marquee-track,
+  .marquee:focus-within .marquee-track {
+    animation-play-state: paused;
+  }
+
+  .marquee-item {
+    width: 300px;
+    flex: none;
+    background: transparent;
+  }
+
+  .marquee-item:hover {
+    box-shadow: 1px 1px 10px #e4bef5;
+  }
+
+  /* The track holds two identical passes, so shifting by half its width
+     (plus half a gap) lands exactly on the start of the second pass. */
+  @keyframes marquee-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-50% - 0.625rem));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      overflow-x: auto;
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+    .marquee-track {
+      animation: none;
+    }
+  }
+</style>

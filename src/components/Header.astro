@@ -74,11 +74,18 @@ import nav from "../data/nav";
     <nav class="hidden md:block">
       <ul class="flex items-center gap-4 transition-transform">
         <!-- Navbar menu content here -->
-        <li><a href="/" class="home">Home</a></li>
-        <li><a href="/#projects" class="projects">Projects</a></li>
-        <li><a href="/#about" class="about">About</a></li>
-        <li><a href="/#skills" class="skills">Skills</a></li>
-        <li><a href="/#contact" class="contact">Contact</a></li>
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.id ? `/#${item.id}` : "/"}
+                class={item.id || "home"}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </nav>
   </div>
@@ -88,14 +95,14 @@ import nav from "../data/nav";
   <nav class="relative py-1 rounded-sm flex-nowrap">
     <ul class="flex flex-col gap-5 text-xs">
       {
-        nav.map((key) => (
+        nav.map((item) => (
           <li>
             <a
               onclick="document.getElementById('drawer').checked = false;"
-              href={`/#${key === "home" ? "" : key}`}
-              class={`${key} text-xl`}
+              href={item.id ? `/#${item.id}` : "/"}
+              class={`${item.id || "home"} text-xl`}
             >
-              {key.substring(0, 1).toUpperCase() + key.substring(1)}
+              {item.label}
             </a>
           </li>
         ))

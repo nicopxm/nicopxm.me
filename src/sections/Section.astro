@@ -1,19 +1,38 @@
 ---
 import CardList from "../components/CardList.astro";
+import type { Project } from "../types";
 
 interface Props {
   id: string;
   title: string;
-  projects: any[];
+  projects: Project[];
   spacing?: string;
+  variant?: "project" | "case-study";
+  priority?: boolean;
 }
 
-const { id, title, projects, spacing = "my-[16px]" } = Astro.props;
+const {
+  id,
+  title,
+  projects,
+  spacing = "my-[16px]",
+  variant = "project",
+  priority = false,
+} = Astro.props;
 ---
 
-<div class={spacing}>
-  <div id={id} class="prose-section-header">
-    <h2 class="prose-section-title text-white">{title}</h2>
-  </div>
-  <CardList projects={projects} key={id} />
-</div>
+{
+  projects.length > 0 && (
+    <div class={spacing}>
+      <div id={id} class="prose-section-header">
+        <h2 class="prose-section-title text-white">{title}</h2>
+      </div>
+      <CardList
+        projects={projects}
+        key={id}
+        variant={variant}
+        priority={priority}
+      />
+    </div>
+  )
+}

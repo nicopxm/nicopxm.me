@@ -1,30 +1,38 @@
 ---
 layout: ../../layouts/BlogPost.astro
-title: "Marketing Analytics ETL Pipeline"
-description: "Replaced manual cross-platform ad reporting with an automated ETL pipeline, turning days-late spend data into same-day campaign decisions across Snapchat, X, and Reddit."
+title: "Multi-Platform Marketing Performance Pipeline"
+description: "Consolidated four ad platforms with incompatible schemas into one standardized source, so budget decisions came from standing information instead of a day of manual reconciliation."
 ---
 
-# Marketing Analytics ETL Pipeline
+# Multi-Platform Marketing Performance Pipeline
 
 **2023**
 
-An automated data pipeline integrating multi-platform ad spend and performance metrics into a centralized source of truth for real-time campaign optimization.
+> *Note on Confidentiality: Because this pipeline was engineered for a live commercial environment, the underlying business datasets, proprietary API configurations, and final dashboards are strictly confidential and cannot be shared publicly. The following outlines the architecture and business impact of the project.*
 
-> *Note on Confidentiality: Because this pipeline was engineered for a live commercial environment, the underlying business datasets, proprietary API configurations, and final Looker Studio dashboards are strictly confidential and cannot be shared publicly. The following outlines the architecture and business impact of the project.*
+## The Problem
 
-## The Challenge
-Marketing teams were operating in the dark, pulling manual reports across fragmented platforms like Snapchat, X, and Reddit Ads. Tracking daily budgets and matching ad spend to actual performance was a massive headache. Because of the reporting lag, we couldn't accurately measure impressions, engagement, or CTR until days after the money was already spent. The data was chaotic, trapped in separate CSV exports, and highly prone to human error, making it nearly impossible to pivot campaigns efficiently under high-uncertainty market conditions.
+Campaign performance lived in four ad platforms that did not agree with each other. Snapchat, X, and Reddit Ads each had their own schema, their own metric definitions, and their own reporting cadence — so there was no such thing as a cross-channel number that anyone could just look up.
+
+Answering *which channel is actually working* meant a day of manual exports and reconciliation. By the time the reconciliation was finished, the numbers described a week that had already been paid for. Budget decisions ran on stale data, which meant underperforming spend kept running for days after it was identifiable as underperforming.
+
+The failure mode was not a lack of data. It was that the data arrived too late and in shapes that could not be compared.
 
 ![Ads Visual](../../assets/xAds.png)
 
-## The Solution
-I architected and deployed a fully automated ETL (Extract, Transform, Load) pipeline to eliminate manual data wrangling and provide real-time marketing intelligence. 
+## The System
 
-### Key Technical Implementations:
-* **Data Extraction:** Engineered automated Python scripts utilizing API integrations to extract daily pacing data, impressions, and raw engagement metrics from multiple marketing channels.
-* **Data Transformation:** Built robust data cleaning and standardization workflows using Pandas. This step unified cross-platform data, automatically calculating blended performance metrics—like CTR, CPC (Cost Per Click), and CPA (Cost Per Acquisition)—to ensure true apples-to-apples comparisons.
-* **Data Loading & Storage:** Pushed the cleaned data into a centralized, highly-performant relational database, creating a single source of truth for the entire marketing organization.
-* **Visualization & Budget Tracking:** Connected the database directly to Looker Studio, producing real-time dashboards that visualized live burn rates against allocated budgets and tracked overall ROAS (Return on Ad Spend).
+A Python ETL that pulls each platform's API on a scheduled refresh and normalizes everything into a single standardized schema.
 
-## The Impact
-By replacing hours of manual spreadsheet work with rigorous data discipline, stakeholders gained instant visibility into exactly which creatives were driving actual engagement. Instead of reacting to last week's data, the team was empowered to stabilize fluctuating budgets, pause underperforming ads instantly, and confidently scale the campaigns that were actually converting.
+* **Extraction:** Automated Python scripts against each platform's API, pulling daily pacing data, impressions, and raw engagement metrics.
+* **Transformation:** Cleaning and standardization in Pandas, unifying cross-platform data and calculating blended metrics — CTR, CPC, CPA — so comparisons are genuinely apples-to-apples rather than four vendors' different definitions of the same word.
+* **Loading:** Cleaned data into a centralized relational database, one source of truth for the marketing organization.
+* **Reporting:** Dashboards connected directly to the database, showing live burn rate against allocated budget and tracking ROAS across channels.
+
+The unglamorous part — agreeing on what CTR means across four vendors before writing the transform — was most of the work, and the reason the output could be trusted.
+
+## What Changed
+
+Cross-channel performance became standing information instead of a request. Budget decisions came from one source rather than four exports.
+
+The practical effect was on reaction time. Instead of responding to last week's numbers, the team could pause underperforming ads while they were still spending, stabilize fluctuating budgets against live burn rate, and scale the campaigns that were converting — with the evidence visible to everyone rather than reconstructed by whoever ran the export.

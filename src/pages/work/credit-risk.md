@@ -24,11 +24,7 @@ I developed a Probability of Default (PD) scorecard built in Python, transitioni
 * **Predictive Modeling:** Trained and validated a classification model across three iterative phases. I deliberately selected **Logistic Regression** over black-box models to ensure full interpretability, which is strictly required for regulatory compliance and Adverse Action notices.
 * **Threshold Optimization:** Translated the machine learning outputs into a traditional 4-tier risk scorecard.
 
-<img 
-  src="/assets/phase3_threshold_optimisation.png" 
-  alt="Optimization chart balancing portfolio default rate against target approval volume" 
-  class="m-auto w-full md:w-[720px] rounded-lg shadow-lg my-8" 
-/>
+![Optimization chart balancing portfolio default rate against target approval volume](../../assets/phase3_threshold_optimisation.png)
 
 *Caption: This optimization analysis confirmed a decision threshold of 0.442 simultaneously satisfied both portfolio default rate constraints (≤ 7.5%) and approval rate targets (≥ 55%).*
 

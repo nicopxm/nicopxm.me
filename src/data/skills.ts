@@ -5,14 +5,19 @@ export interface SkillCategory {
 
 const skillCategories: SkillCategory[] = [
   {
-    name: "Data Analytics & Visualization",
+    name: "GTM & Revenue Systems",
     skills: [
-      "Tableau",
-      "Power BI",
-      "Data Visualization",
-      "Marketing Metrics",
-      "Trend Reporting",
-      "Ad-Spend Optimization"
+      "HubSpot",
+      "Clay",
+      "n8n",
+      "Apollo",
+      "CRM Architecture",
+      "Lead Scoring",
+      "ICP Definition",
+      "Outbound Sequencing",
+      "Lifecycle Routing",
+      "Attribution",
+      "Data Enrichment"
     ],
   },
   {
@@ -28,14 +33,14 @@ const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    name: "Project Management & Agile",
+    name: "Data Analytics & Visualization",
     skills: [
-      "Agile Methodology",
-      "Scrum Framework",
-      "Jira / Confluence",
-      "Sprint Planning",
-      "Backlog Refinement",
-      "Stakeholder Collaboration"
+      "Tableau",
+      "Power BI",
+      "Data Visualization",
+      "Marketing Metrics",
+      "Trend Reporting",
+      "Ad-Spend Optimization"
     ],
   },
   {
@@ -49,29 +54,20 @@ const skillCategories: SkillCategory[] = [
       "GitHub Actions (CI/CD)"
     ],
   },
+  {
+    name: "How I Work",
+    skills: [
+      "Agile Methodology",
+      "Scrum Framework",
+      "Jira / Confluence",
+      "Sprint Planning",
+      "Backlog Refinement",
+      "Stakeholder Collaboration"
+    ],
+  },
 ];
 
-const skills = [
-  "Python",
-  "SQL",
-  "Tableau",
-  "Power BI",
-  "PostgreSQL",
-  "Supabase",
-  "Agile Methodology",
-  "Scrum Framework",
-  "Jira / Confluence",
-  "Machine Learning",
-  "ETL Data Pipelines",
-  "Data Automation",
-  "Predictive Modeling",
-  "Risk Intelligence",
-  "Marketing Metrics",
-  "Ad-Spend Optimization",
-  "Sprint Planning",
-  "Stakeholder Collaboration",
-  "GitHub Actions (CI/CD)"
-];
+const skills = skillCategories.flatMap((category) => category.skills);
 
 export { skillCategories };
 export default skills;

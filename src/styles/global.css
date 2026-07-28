@@ -192,7 +192,9 @@
 
   /* Card list */
   .card-list {
-    @apply flex flex-grow justify-start flex-nowrap gap-5 overflow-x-auto pt-4 w-full p-4 items-stretch;
+    @apply flex flex-grow flex-nowrap gap-5 overflow-x-auto pt-4 w-full p-4 items-stretch;
+    /* `safe` keeps leading cards reachable once a shelf overflows and scrolls */
+    justify-content: safe center;
     grid-template-columns: repeat(auto-fit, minmax(218px, 227px));
   }
 

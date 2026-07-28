@@ -2,15 +2,21 @@
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../config";
 import MainLayout from "../layouts/MainLayout.astro";
-import Art from "../sections/Art.astro";
+import Certifications from "../sections/Certifications.astro";
 import Contact from "../sections/Contact.astro";
 import Hero from "../sections/Hero.astro";
-import Projects from "../sections/Projects.astro";
+import Section from "../sections/Section.astro";
 import Skills from "../sections/Skills.astro";
-import Productions from "../sections/Productions.astro";
 import About from "../sections/About.astro";
-import Scripts from "../components/Scripts.astro";
+import { caseStudies, dataWork, gtm, lab } from "../data/shelves";
 import { ViewTransitions } from "astro:transitions";
+
+const firstPopulated = [
+  { id: "gtm", projects: gtm },
+  { id: "case-studies", projects: caseStudies },
+  { id: "data", projects: dataWork },
+  { id: "lab", projects: lab },
+].find((shelf) => shelf.projects.length > 0)?.id;
 ---
 
 <!doctype html>
@@ -19,17 +25,54 @@ import { ViewTransitions } from "astro:transitions";
     <BaseHead
       title={SITE_TITLE}
       description={SITE_DESCRIPTION}
-      image="assets/coffee.jpeg"
+      image="/assets/og-default.png"
     />
     <ViewTransitions />
   </head>
 
   <MainLayout>
     <Hero />
-    <Projects />
-    
+    <Section
+      id="gtm"
+      title="GTM & Automation"
+      projects={gtm}
+      priority={firstPopulated === "gtm"}
+    />
+    <Section
+      id="case-studies"
+      title="Client Case Studies"
+      projects={caseStudies}
+      variant="case-study"
+      priority={firstPopulated === "case-studies"}
+    />
+    <Section
+      id="data"
+      title="Data & Engineering"
+      projects={dataWork}
+      priority={firstPopulated === "data"}
+    />
+    <Section
+      id="lab"
+      title="The Lab"
+      projects={lab}
+      priority={firstPopulated === "lab"}
+    />
     <About />
     <Skills />
+    <Certifications />
     <Contact />
   </MainLayout>
 </html>
+
+<style>
+  :global(#gtm .prose-section-title),
+  :global(#case-studies .prose-section-title),
+  :global(#data .prose-section-title),
+  :global(#lab .prose-section-title),
+  :global(#certifications .prose-section-title) {
+    border: 1px solid #6b7280;
+    box-shadow: 0 0 8px #6b7280, 0 0 20px rgba(107, 114, 128, 0.4);
+    padding: 4px 16px;
+    border-radius: 6px;
+  }
+</style>

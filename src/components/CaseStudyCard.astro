@@ -2,7 +2,6 @@
 import type { Project } from "../types";
 import type { ImageMetadata } from "astro";
 import Tag from "./Tag.astro";
-import external from "../icons/external.svg?raw";
 import { Image } from "astro:assets";
 
 const { project, priority = false } = Astro.props as {
@@ -12,8 +11,7 @@ const { project, priority = false } = Astro.props as {
 const {
   filename,
   name,
-  role,
-  dates,
+  client,
   tags,
   link,
   imageStyle,
@@ -22,6 +20,7 @@ const {
   system,
   outcome,
   status,
+  metrics,
 } = project as Project;
 
 const statusLabel: Record<string, string> = {
@@ -30,7 +29,6 @@ const statusLabel: Record<string, string> = {
   shipped: "Shipped",
 };
 
-// Dynamically import all images
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/*.{jpeg,jpg,png,gif,webp}"
 );
@@ -95,12 +93,24 @@ const imageLoader = filename ? images[`/src/assets/${filename}`] : undefined;
       )
     }
 
+    {client && <span class="text-accent-cyan">{client}</span>}
+
     {problem && <span class="text-gray-400 text-sm line-clamp-2">{problem}</span>}
     {system && <span class="text-primary-body text-sm line-clamp-2">{system}</span>}
     {outcome && <span class="text-accent-cyan text-sm line-clamp-2">{outcome}</span>}
 
-    {role && <span class="text-accent-cyan">{role}</span>}
-    {dates && <span class="text-gray-400 text-sm">{dates}</span>}
+    {
+      metrics && metrics.length > 0 && (
+        <div class="flex flex-wrap gap-x-6 gap-y-2 pt-1">
+          {metrics.map((metric) => (
+            <div class="flex flex-col">
+              <span class="text-accent-cyan font-bold">{metric.value}</span>
+              <span class="text-gray-400 text-xs">{metric.label}</span>
+            </div>
+          ))}
+        </div>
+      )
+    }
 
     {
       status && (
